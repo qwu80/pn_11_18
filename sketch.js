@@ -265,7 +265,9 @@ var zincrement = 0.001;
 var increment = 0.1;
 var zoff = 0.0;
 
-let point_count = 24;
+let test_num = 10
+
+let point_count = 200;
 let array_plot = []
 let array_plot_0 = []
 let array_positive_y = []
@@ -3988,7 +3990,7 @@ for (let i = 0; i < blackArray_h.length; i++) {
   for (let k = 0; k < point_count; k++) {
     let x = 190 + (950 - 190) / point_count * (k + 1);
 
-    let n = Math.pow(Math.pow(10,20)/hole_add_new,exp(V_applied_p/40/0.026)*exp(1/100*(x-550+((400)/8*count_pn_num))*s_x))
+    let n = Math.pow(Math.pow(10,20)/hole_add_new,exp(V_applied_p/40/0.026/test_num)*exp(1/test_num*(x-550+((400)/8*count_pn_num))*s_x))
     // console.log (n+"hellpppppppp")
     if (x<(550-(400)/8*count_pn_num)){
       new_array_plot_e_set_count.push({ x: x, y: n });
@@ -4091,20 +4093,20 @@ strokeWeight(1.5)
 
 
 // endShape();
-if (new_array_plot_e_set_count.length > 3) {
+if (new_array_plot_e_set_count.length >= 3) {
 beginShape();
   // The first control point is the first point in the array
   // This point will not be visible in the curve
-  curveVertex(new_array_plot_e_set_count[0].x-80, 190-new_array_plot_e_set_count[0].y/10000); 
+  curveVertex(new_array_plot_e_set_count[0].x, 190-new_array_plot_e_set_count[0].y/10000); 
   
   // Iterate over the array to create the curve
   for (let i = 0; i < new_array_plot_e_set_count.length; i++) {
-    curveVertex(new_array_plot_e_set_count[i].x-80, 190-new_array_plot_e_set_count[i].y/10000);
+    curveVertex(new_array_plot_e_set_count[i].x, 190-new_array_plot_e_set_count[i].y/10000);
   }
 
   // The last control point is the last point in the array
   // This point will not be visible in the curve
-  curveVertex(new_array_plot_e_set_count[new_array_plot_e_set_count.length - 1].x-80, 190-new_array_plot_e_set_count[new_array_plot_e_set_count.length - 1].y/10000);
+  curveVertex(new_array_plot_e_set_count[new_array_plot_e_set_count.length - 1].x, 190-new_array_plot_e_set_count[new_array_plot_e_set_count.length - 1].y/10000);
   
   endShape();
 noStroke()
@@ -6966,4 +6968,9 @@ function onRefresh() {
   reset_scene1()
 
   
+}
+setTest = (a) =>{
+
+ test_num = a
+
 }
